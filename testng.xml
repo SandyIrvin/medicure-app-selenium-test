@@ -2,7 +2,7 @@
 <suite name="MedicureTestSuite">
     <test name="MedicureTests">
         <classes>
-            <class name="com.mentorbabaa.selenium.medicure_application.MedicureFormTest" />
+            <class name="com.mentorbabaa.selenium.medicure_application.App" />
             <!-- Add other test classes here if needed -->
         </classes>
     </test>
