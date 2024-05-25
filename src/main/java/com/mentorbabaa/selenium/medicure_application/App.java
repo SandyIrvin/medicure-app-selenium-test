@@ -2,6 +2,8 @@ package com.mentorbabaa.selenium.medicure_application;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -55,29 +57,38 @@ public class App
         emailField.clear();
         messageField.clear();
 
+        StringBuilder errorDescription = new StringBuilder("No_Errors");
+
         if (isValidName(name)) {
             nameField.sendKeys(name);
         } else {
+            errorDescription.append("Invalid_Name").append(name);
             System.out.println("Invalid name: " + name);
         }
 
         if (isValidMobile(mobile)) {
             mobileField.sendKeys(mobile);
         } else {
+            errorDescription.append("Invalid_Mobile").append(mobile);
             System.out.println("Invalid mobile number: " + mobile);
         }
 
         if (isValidEmail(email)) {
             emailField.sendKeys(email);
         } else {
+            errorDescription.append("Invalid_Email").append(email);
             System.out.println("Invalid email: " + email);
         }
 
         if (isValidMessage(message)) {
             messageField.sendKeys(message);
         } else {
+            errorDescription.append("Invalid_Message").append(message);
             System.out.println("Invalid message: " + message);
         }
+
+        // Take a screenshot after filling the form fields
+        takeScreenshot(errorDescription.toString());
 
         sendButton.click();
 
@@ -87,6 +98,21 @@ public class App
             System.out.println("Page scrolled to the top successfully.");
         } else {
             System.out.println("Page did not scroll to the top.");
+        }
+    }
+
+    public void takeScreenshot(String errorDescription) {
+        // Format the timestamp
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        // Create the filename with the error description
+        String filename = "screenshot_" + errorDescription + "_" + timestamp + ".png";
+        // Take the screenshot
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            // Save the screenshot
+            FileUtils.copyFile(srcFile, new File("screenshots/" + filename));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -112,12 +138,6 @@ public class App
     }
 
     public void tearDown() throws IOException {
-    
-    // Take screenshot	
-	TakesScreenshot scrShot = ((TakesScreenshot)driver);
-    File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-    File desFile = new File("success-report.jpg");
-    FileUtils.copyFile(srcFile, desFile);
     
     System.out.println("Screenshot is stored at" +desFile.getAbsolutePath());
     	
