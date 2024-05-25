@@ -25,11 +25,11 @@ public class App
         // Set Chrome options for headless mode
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // Add headless argument
-        App.driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
 
-        App.driver.get("http://65.1.84.157:8084/");
+        driver.get("http://65.1.84.157:8084/");
     }
-    
+
     public void testFormSubmission() {
         // Valid input test
         testForm(driver, "John Doe", "1234567890", "john.doe@example.com", "This is a test message.");
