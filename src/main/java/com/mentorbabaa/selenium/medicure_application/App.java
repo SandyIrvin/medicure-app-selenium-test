@@ -20,14 +20,14 @@ public class App
 	private WebDriver driver;
 
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Software\\chromedriver-win64\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "D:\\Software\\chromedriver-win64\\chromedriver.exe");
 
         // Set Chrome options for headless mode
         ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--headless"); // Add headless argument
-        driver = new ChromeDriver(options);
+        options.addArguments("--headless"); // Add headless argument
+        App.driver = new ChromeDriver(options);
 
-        driver.get("http://65.1.84.157:8084/");
+        App.driver.get("http://65.1.84.157:8084/");
     }
     
     public void testFormSubmission() {
