@@ -137,9 +137,9 @@ public class App
         return !message.trim().isEmpty();
     }
 
-    public void tearDown() throws IOException {
+    public void tearDown() throws  IOException {
     
-    System.out.println("Screenshot is stored at" +desFile.getAbsolutePath());
+   //System.out.println("Screenshot is stored at" +desFile.getAbsolutePath());
     	
     	if (driver != null) {
             driver.quit();
