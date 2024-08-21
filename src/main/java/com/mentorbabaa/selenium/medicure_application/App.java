@@ -29,7 +29,7 @@ public class App
         options.addArguments("--headless"); // Add headless argument
         driver = new ChromeDriver(options);
 
-        driver.get("http://65.1.84.157:8084/");
+        driver.get("http://44.202.201.1:8082/contact.html");
     }
 
     public void testFormSubmission() {
